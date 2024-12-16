@@ -1,0 +1,14 @@
+C:\Users\zapat\ADO\c#\tp\bin\Debug\net8.0\tp.exe
+C:\Users\zapat\ADO\c#\tp\bin\Debug\net8.0\tp.deps.json
+C:\Users\zapat\ADO\c#\tp\bin\Debug\net8.0\tp.runtimeconfig.json
+C:\Users\zapat\ADO\c#\tp\bin\Debug\net8.0\tp.dll
+C:\Users\zapat\ADO\c#\tp\bin\Debug\net8.0\tp.pdb
+C:\Users\zapat\ADO\c#\tp\obj\Debug\net8.0\tp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zapat\ADO\c#\tp\obj\Debug\net8.0\tp.AssemblyInfoInputs.cache
+C:\Users\zapat\ADO\c#\tp\obj\Debug\net8.0\tp.AssemblyInfo.cs
+C:\Users\zapat\ADO\c#\tp\obj\Debug\net8.0\tp.csproj.CoreCompileInputs.cache
+C:\Users\zapat\ADO\c#\tp\obj\Debug\net8.0\tp.dll
+C:\Users\zapat\ADO\c#\tp\obj\Debug\net8.0\refint\tp.dll
+C:\Users\zapat\ADO\c#\tp\obj\Debug\net8.0\tp.pdb
+C:\Users\zapat\ADO\c#\tp\obj\Debug\net8.0\tp.genruntimeconfig.cache
+C:\Users\zapat\ADO\c#\tp\obj\Debug\net8.0\ref\tp.dll
