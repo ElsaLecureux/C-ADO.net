@@ -19,7 +19,7 @@ class Author()
         }
     }
 
-    public void getInfos(){
-
+    public void getFullName(){
+        Console.WriteLine($"{FirstName} ");
     }
 }
