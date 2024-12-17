@@ -1,7 +1,7 @@
 class Book() 
 {
     private string title;
-    string Title {
+    public string Title {
         get{
             return title;
         }
@@ -10,8 +10,8 @@ class Book()
         }
     }
 
-    private DateTime publication_date;
-    DateTime PublicationDate {
+    private int publication_date;
+    public int PublicationDate {
         get{
             return publication_date;
         }
@@ -21,10 +21,11 @@ class Book()
     }
      
 
-    Author author;
+    public Author author;
 
     public void getInfos(){
-        Console.WriteLine($"title: {Title}, publication date: {PublicationDate}, author: {author.getFullName}.");
+        Console.WriteLine($"title: {Title}, publication date: {PublicationDate} author: {author.FirstName} {author.LastName}");
+        //author.getFullName();
     }
 
 

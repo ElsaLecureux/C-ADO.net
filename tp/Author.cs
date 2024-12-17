@@ -1,7 +1,7 @@
 class Author()
 {
     private string firstName;
-    String FirstName {
+    public String FirstName {
         get{
             return firstName;
         }
@@ -10,7 +10,7 @@ class Author()
         }
     }
     private string lastName;
-    string LastName{
+    public string LastName{
         get{
             return lastName;
             } 
@@ -20,6 +20,6 @@ class Author()
     }
 
     public void getFullName(){
-        Console.WriteLine($"{FirstName} ");
+        Console.WriteLine($"author: {FirstName} {LastName}");
     }
 }
