@@ -17,14 +17,22 @@ class Program
         string query2="UPDATE Car SET price='19500', model= 'Megane' WHERE id = 5";
         string query3="UPDATE Car SET price='17890' WHERE id = 3";
 
+        string selectQuery="SELECT model FROM Car WHERE id > 2";
+
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
-            SqlCommand command = new SqlCommand(query3, connection);
+            SqlCommand command = new SqlCommand(selectQuery, connection);
             try
             {
                 connection.Open();
-                command.ExecuteNonQuery();
-                Console.WriteLine("Table created and updated successfully");
+                using(SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string model= reader["model"].ToString();
+                        Console.WriteLine($"model: {model}");
+                    }
+                }
             }
             catch(SqlException ex)
             {
