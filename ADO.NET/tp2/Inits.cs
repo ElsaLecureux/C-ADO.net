@@ -44,10 +44,28 @@ public static class DataInitializer
                     pk_pro INT PRIMARY KEY  identity(1,1),
                     name_pro VARCHAR(50) NOT NULL,
                     quantity_pro INT NOT NULL,
-                    price_pro FLOAT NOT NULL,
+                    price_pro DECIMAL(10, 2) NOT NULL,
                     fk_cat INT NOT NULL,
                     FOREIGN KEY (fk_cat) REFERENCES Categories(pk_cat)
                 );
+            END;
+            
+            BEGIN
+            INSERT INTO Categories (name_cat)
+            VALUES ('clothes'),
+                   ('furniture'),
+                   ('tech');
+            END;
+            
+            BEGIN
+            INSERT INTO Products (name_pro, quantity_pro, price_pro, fk_cat)
+            VALUES ('tshirt', 45, 15.99, 1),
+                   ('pull', 36, 49.99, 1),
+                   ('desk', 12, 129.90, 2),
+                   ('chair', 23, 52.99, 2),
+                   ('computer', 5, 999.99, 3),
+                   ('keyboard', 15, 25, 3),
+                   ('mouse', 22, 12.50, 3);
             END;";
 
 
