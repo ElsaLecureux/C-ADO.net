@@ -16,7 +16,7 @@ public static class DataInitializer
                 try
                 {
                 int rowsAffected = cmd.ExecuteNonQuery();
-                Console.WriteLine($"Database initialized successfully: {rowsAffected} ligne(s) affectée(s)"); 
+                Console.WriteLine($"Database created successfully: {rowsAffected} ligne(s) affectée(s)"); 
                 }
                 catch(SqlException ex)
                 {
@@ -27,7 +27,7 @@ public static class DataInitializer
 
     public static void InitTables(SqlConnection connection,SqlTransaction transaction)
     {
-        string query=@"
+        string createCategoriesTable=@"
             USE StoreDB;
 
             IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Categories')
@@ -36,7 +36,16 @@ public static class DataInitializer
                     pk_cat INT PRIMARY KEY identity(1,1),
                     name_cat VARCHAR(50) NOT NULL
                 );
-            END;
+            END;";
+
+        using (SqlCommand cmd = new SqlCommand(createCategoriesTable, connection, transaction))    
+            {
+                cmd.ExecuteNonQuery();
+                Console.WriteLine($"Table Categories Created successfully"); 
+            }
+
+        string createProductTable=@"
+            USE StoreDB;
 
             IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Products')
             BEGIN
@@ -48,15 +57,32 @@ public static class DataInitializer
                     fk_cat INT NOT NULL,
                     FOREIGN KEY (fk_cat) REFERENCES Categories(pk_cat)
                 );
-            END;
+            END;";
+
+        using (SqlCommand cmd = new SqlCommand(createProductTable, connection, transaction))    
+            {
+                cmd.ExecuteNonQuery();
+                Console.WriteLine($"Table Products created successfully"); 
+            }
+
+        string insertDataCategories= @"
             
+            IF NOT EXISTS (SELECT 1 FROM Categories)
             BEGIN
             INSERT INTO Categories (name_cat)
             VALUES ('clothes'),
                    ('furniture'),
                    ('tech');
-            END;
-            
+            END;";
+
+        using (SqlCommand cmd = new SqlCommand(insertDataCategories, connection, transaction))    
+            {
+                cmd.ExecuteNonQuery();
+                Console.WriteLine($"Table Categories initialized successfully"); 
+            }
+
+        string insertDataProducts= @"
+            IF NOT EXISTS (SELECT 1 FROM Products)
             BEGIN
             INSERT INTO Products (name_pro, quantity_pro, price_pro, fk_cat)
             VALUES ('tshirt', 45, 15.99, 1),
@@ -69,12 +95,12 @@ public static class DataInitializer
             END;";
 
 
-        using (SqlCommand cmd = new SqlCommand(query, connection, transaction))    
+        using (SqlCommand cmd = new SqlCommand(insertDataProducts, connection, transaction))    
             {
                 try
                 {
-                int rowsAffected = cmd.ExecuteNonQuery();
-                Console.WriteLine($"Tables initialized successfully: {rowsAffected} ligne(s) affectée(s)"); 
+                cmd.ExecuteNonQuery();
+                Console.WriteLine($"Table Products initialized successfully"); 
                 }
                 catch(SqlException ex)
                 {
