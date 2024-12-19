@@ -203,7 +203,17 @@ class Program
 
         public static void DisplayCumulatedPrices(SqlConnection connection)
         {
-            Console.WriteLine("option5");
+            string query = "SELECT SUM(price_pro) FROM Products";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            try
+            {
+                decimal count= (decimal)cmd.ExecuteScalar();
+                Console.WriteLine($"Here is the cumulated prices of all products in store: {count}");
+            }
+            catch(Exception exp)
+            {
+                Console.WriteLine($"Error calculating cumulated price: {exp}");
+            }
         }
 
 }
