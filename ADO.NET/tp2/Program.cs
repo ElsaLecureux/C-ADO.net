@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Azure.Core;
+using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Client;
 using static DataInitializer;
 
@@ -91,12 +92,27 @@ class Program
             }
         }
 
+        public static int enterQuantity()
+        {   
+            int quantity = 0;
+            Console.WriteLine("Enter product quantity:");
+            string quantityString = Console.ReadLine()!;
+            if(int.TryParse(quantityString, out int result))
+            {
+               quantity = result;
+            }
+            else {
+                Console.WriteLine("Wrong format, please enter a quantity using digits");
+                quantity = enterQuantity();
+            }
+            return quantity;
+        }
+
         public static void AddProduct(SqlConnection connection)
         {
             Console.WriteLine("Enter product name:");
             string name = Console.ReadLine()!;
-            Console.WriteLine("Enter product quantity:");
-            int quantity = int.Parse(Console.ReadLine()!);
+            int quantity = enterQuantity();            
             Console.WriteLine("Enter product price:");
             decimal price = decimal.Parse(Console.ReadLine()!);
             Console.WriteLine("Enter product category number:");
